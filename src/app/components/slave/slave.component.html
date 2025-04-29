@@ -1,5 +1,14 @@
 <div>
-    <button (click)="subscribeSbj()">subscribe sbj</button>
-    <button (click)="subscribeResbj()">subscribe bsbj</button>
-    <button (click)="subscribeBsbj()">subscribe resbj</button>
+    <button (click)="subscribeSbj()">subscribe NORMAL sbj</button>
+    <button (click)="unsubscribe()">unsubscribe</button>
+    <br>
+    <button (click)="subscribeResbj()">subscribe BEHAVIOR sbj</button>
+    <br>
+    <button (click)="subscribeBsbj()">subscribe REPLAY sbj</button>
+    <br>
+    <span>NORMAL {{comServ.sbj | async}}</span>
+    <br>
+    <span>BEHAVIOR {{comServ.bSbj | async}}</span>
+    <br>
+    <span>REPLAY {{comServ.reSbj | async}}</span>
 </div>

@@ -1,24 +1,32 @@
 import { Component, inject } from '@angular/core';
 import { ComService } from '../../services/com/com.service';
+import { AsyncPipe } from '@angular/common';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-slave',
-  imports: [],
+  imports: [AsyncPipe],
   templateUrl: './slave.component.html',
   styleUrl: './slave.component.scss'
 })
 export class SlaveComponent {
   comServ = inject(ComService);
 
+  normalSubscription?: Subscription
+
   subscribeResbj() {
-    this.comServ.bSbj.subscribe(data => console.log('behavior', data));
+    this.comServ.bSbj.subscribe(data => console.log('BEHAVIOR ', data));
   }
 
   subscribeBsbj() {
-    this.comServ.reSbj.subscribe(data => console.log('replay', data));
+    this.comServ.reSbj.subscribe(data => console.log('REPLAY ', data));
   }
 
   subscribeSbj() {
-    this.comServ.sbj.subscribe(data => console.log('normal', data));
+    this.normalSubscription = this.comServ.sbj.subscribe(data => console.log('NORMAL ', data));
+  }
+
+  unsubscribe(){
+    this.normalSubscription?.unsubscribe();
   }
 }
